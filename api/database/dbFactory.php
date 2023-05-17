@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/env.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/env.php');
 
 class DB
 {

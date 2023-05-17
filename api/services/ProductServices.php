@@ -1,8 +1,8 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/classes/Product.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/database/dbFactory.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/repositories/ProductRepository.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/classes/Product.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/database/dbFactory.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/repositories/ProductRepository.php');
 
 class ProductService
 {

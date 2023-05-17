@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/classes/Product.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/classes/Product.php');
 
 class DVDProduct extends Product 
 {
@@ -36,14 +36,14 @@ class DVDProduct extends Product
     {
         try {
             $stmt = $conn->prepare("INSERT INTO products (sku, name, price, type, value) 
-            VALUES (:sku, :name, :price, :type, :size)");
-            $stmt->execute([
-                ':sku' => $this->getSku(),
-                ':name' => $this->getName(),
-                ':price' => $this->getPrice(),
-                ':type' => $this->getType(),
-                ':size' => $this->getSize(),
-            ]);
+                VALUES (:sku, :name, :price, :type, :size)");
+            $stmt->bindValue(':sku', $this->getSku(), PDO::PARAM_STR);
+            $stmt->bindValue(':name', $this->getName(), PDO::PARAM_STR);
+            $stmt->bindValue(':price', $this->getPrice(), PDO::PARAM_STR);
+            $stmt->bindValue(':type', $this->getType(), PDO::PARAM_STR);
+            $stmt->bindValue(':size', $this->getSize(), PDO::PARAM_STR);
+            $stmt->execute();
+        
             return $stmt->rowCount() > 0;
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') {

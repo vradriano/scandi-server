@@ -1,9 +1,9 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/services/ProductServices.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/factories/Product/Product.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/factories/Product/types.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/helpers/errorHandler.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/services/ProductServices.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/factories/Product/Product.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/factories/Product/types.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/helpers/errorHandler.php');
 
 
 class ProductController 

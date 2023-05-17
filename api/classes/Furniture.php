@@ -1,7 +1,7 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/classes/Product.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/helpers/errorHandler.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/classes/Product.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/helpers/errorHandler.php');
 
 class FurnitureProduct extends Product 
 {
@@ -78,14 +78,14 @@ class FurnitureProduct extends Product
     {
         try {
             $stmt = $conn->prepare("INSERT INTO products (sku, name, price, type, value) 
-                VALUES (:sku, :name, :price, :type, :dimensions)");
-            $stmt->execute([
-                ':sku' => $this->getSku(),
-                ':name' => $this->getName(),
-                ':price' => $this->getPrice(),
-                ':type' => $this->getType(),
-                ':dimensions' => $this->getValue(),
-            ]);
+                VALUES (:sku, :name, :price, :type, :value)");
+            $stmt->bindValue(':sku', $this->getSku(), PDO::PARAM_STR);
+            $stmt->bindValue(':name', $this->getName(), PDO::PARAM_STR);
+            $stmt->bindValue(':price', $this->getPrice(), PDO::PARAM_STR);
+            $stmt->bindValue(':type', $this->getType(), PDO::PARAM_STR);
+            $stmt->bindValue(':value', $this->getValue(), PDO::PARAM_STR);
+            $stmt->execute();
+        
             return $stmt->rowCount() > 0;
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') {
@@ -93,6 +93,6 @@ class FurnitureProduct extends Product
             } else {
                 throw new Exception("Internal server error: " . $e->getMessage());
             }
-        } 
+        }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/classes/Product.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/classes/Product.php');
 
 class ProductRepository 
 {

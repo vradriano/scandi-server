@@ -1,5 +1,5 @@
 <?php
-$_ENV['DB_HOST'] = 'localhost';
-$_ENV['DB_NAME'] = 'scandiweb';
-$_ENV['DB_USER'] = 'root';
-$_ENV['DB_PASS'] = '';
+$_ENV['DB_HOST'] = 'sql7.freesqldatabase.com:3306';
+$_ENV['DB_NAME'] = 'sql7618898';
+$_ENV['DB_USER'] = 'sql7618898';
+$_ENV['DB_PASS'] = 'gXnSIPttcs';

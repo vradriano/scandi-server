@@ -1,30 +1,18 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/scandiweb/api/controller/ProductController.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/helpers/cors.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/api/routes/Router.php');
 
-$requestMethod = $_SERVER['REQUEST_METHOD'];
+setCorsHeaders(); 
 
-$productController = new ProductController();
-
-$request = $_GET['request'] ?? '';
-$id = $_GET['id'] ?? null;
-
-switch ($request) {
-    case 'products':
-        if ($requestMethod === 'GET') {
-            $productController->getAllProducts();
-        } elseif ($requestMethod === 'POST') {
-            $productController->createProduct();
-        } elseif ($requestMethod === 'DELETE') {
-            $idList = explode(',', $id);
-            $productController->deleteProduct($idList);
-        }
-        break;
-    default:
-        http_response_code(405);
-        echo json_encode(['error' => 'Unsupported method']);
-        break;
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    exit();
 }
 
-// userNAME: scandiweb
-// password: Scandiweb-1
+$requestUri = $_SERVER['REQUEST_URI'];
+$baseUri = '/api/';
+$requestPath = trim(str_replace($baseUri, '', $requestUri), '/');
+$requestPathSegments = explode('/', $requestPath);
+
+$router = new Router($_SERVER['REQUEST_METHOD'], $requestPathSegments);
+$router->handleRequest();
